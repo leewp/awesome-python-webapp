@@ -1626,7 +1626,7 @@ class WSGIApplication(object):
         _application = Dict(document_root=self._document_root)
 
         def fn_route():
-            request_method = ctx.request.request_methon
+            request_method = ctx.request.request_method
             path_info = ctx.request.path_info
             if request_method=='GET':
                 fn = self._get_static.get(path_info, None)
@@ -1679,7 +1679,7 @@ class WSGIApplication(object):
                 exc_type, exc_value, exc_trackback = sys.exc_info()
                 fp = StringIO()
                 traceback.print_exception(exc_type, exc_value, exc_trackback, file=fp)
-                stacks = fp.getvalues()
+                stacks = fp.getvalue()
                 fp.close()
                 start_response('500 Internal Server Error', [])
                 return [
